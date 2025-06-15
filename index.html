@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biodata for Marriage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: 'Georgia', serif;
+      background: #fffef5;
+    }
+
+    .a4 {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      margin: auto;
+      padding: 25mm;
+      border: 6px double gold;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(218,165,32,0.3);
+    }
+
+    .main-heading {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #b8860b;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      border: 3px double gold;
+      border-radius: 14px;
+      padding: 10px;
+      background: #fffbea;
+      box-shadow: 0 0 10px rgba(218,165,32,0.4);
+    }
+
+    .bismillah {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #b8860b;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 3px solid gold;
+      border-radius: 16px;
+      background: #fff8dc;
+    }
+
+    .photo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    #photoPreview {
+      width: 180px;
+      height: auto;
+      border: 4px solid gold;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(218,165,32,0.5);
+      display: none;
+      margin-bottom: 12px;
+    }
+
+    .file-upload {
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .section {
+      border: 2px solid goldenrod;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 18px;
+      background: #fffdf0;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      color: #8b4513;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed goldenrod;
+      padding-bottom: 4px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 8px;
+      color: #4e342e;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #d4af37;
+      background-color: #fffef7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background: linear-gradient(to right, gold, goldenrod);
+      color: #4e342e;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(218,165,32,0.4);
+      margin: 10px;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, goldenrod, gold);
+      transform: scale(1.05);
+    }
+
+    @media print {
+      .btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4" id="biodata">
+    <div class="main-heading">Biodata for Marriage</div>
+    <div class="bismillah">بِسْمِ ٱللّٰهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+
+    <div class="photo-section">
+      <img id="photoPreview" alt="Your Photo" />
+      <div class="file-upload">
+        <input type="file" id="photo" accept="image/*" onchange="loadPhoto(event)">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Personal Details</h2>
+      <label>Full Name:</label>
+      <input type="text" id="name">
+      <label>Date of Birth:</label>
+      <input type="date" id="dob">
+      <label>Gender:</label>
+      <select id="gender" onchange="fillAboutMe()">
+        <option value="">-- Select --</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <label>Contact:</label>
+      <input type="text" id="contact">
+    </div>
+
+    <div class="section">
+      <h2>Religious Details</h2>
+      <label>Religion & Madhab:</label>
+      <input type="text" id="religion">
+      <label>Practices (Namaz, Roza, Hajj):</label>
+      <input type="text" id="practices">
+    </div>
+
+    <div class="section">
+      <h2>Education & Occupation</h2>
+      <label>Education:</label>
+      <input type="text" id="education">
+      <label>Occupation:</label>
+      <input type="text" id="occupation">
+    </div>
+
+    <div class="section">
+      <h2>Marriage Status</h2>
+      <label>First Marriage / Second Marriage:</label>
+      <input type="text" id="marriageStatus" placeholder="e.g. Never Married, Widow, Divorced">
+    </div>
+
+    <div class="section">
+      <h2>Family Details</h2>
+      <label>Father's Name & Occupation:</label>
+      <input type="text" id="father">
+      <label>Mother's Name & Occupation:</label>
+      <input type="text" id="mother">
+    </div>
+
+    <div class="section">
+      <h2>Address</h2>
+      <label>Full Address:</label>
+      <textarea id="address" rows="3" placeholder="Enter your full residential address here..."></textarea>
+    </div>
+
+    <div class="section">
+      <h2>Brother(s)</h2>
+      <label>Details:</label>
+      <textarea id="brothers" rows="2" placeholder="E.g. 2 Brothers – 1 Married, 1 Studying"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>Sister(s)</h2>
+      <label>Details:</label>
+      <textarea id="sisters" rows="2" placeholder="E.g. 3 Sisters – All Married"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>Partner Preferences</h2>
+      <textarea id="partner" rows="3" placeholder="Education, Deen-practicing, City, etc."></textarea>
+    </div>
+
+    <div class="section">
+      <h2>About Me</h2>
+      <textarea id="about" rows="6" placeholder="Write a short bio about yourself..."></textarea>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <button class="btn" onclick="window.print()">🖨️ Print or Save as PDF</button>
+  </div>
+
+  <script>
+    function loadPhoto(event) {
+      const img = document.getElementById('photoPreview');
+      const fileInput = document.getElementById('photo');
+      img.src = URL.createObjectURL(event.target.files[0]);
+      img.style.display = 'block';
+      fileInput.style.display = 'none';
+    }
+
+    function fillAboutMe() {
+      const gender = document.getElementById('gender').value;
+      const about = document.getElementById('about');
+      if (gender === 'male') {
+        about.value = `Assalamu Alaikum wa Rahmatullah,\n\nI am a simple, well-educated, and practicing Muslim boy who values family, deen, and honesty. I perform five times salah, keep fasts during Ramadan, and strive to live according to Islamic principles.\n\nI have completed my education in [Your Qualification] and currently working as [Your Job Title] in [Company/Field]. Alhamdulillah, I maintain a good balance between deen and duniya.\n\nI come from a respected and moderate family with strong Islamic values. I am soft-spoken, responsible, caring, and believe in mutual respect and understanding in a marriage.\n\nLooking for a life partner who is kind-hearted, deen-oriented, and has a positive approach to life.`;
+      } else if (gender === 'female') {
+        about.value = `Assalamu Alaikum wa Rahmatullah,\n\nI am a well-mannered, family-oriented and religious Muslimah. I try to follow Islam sincerely, perform regular salah, observe hijab, and fast in Ramadan. I believe in modesty, kindness, and mutual respect.\n\nI have completed my education in [Your Qualification] and I am currently involved in [Job/Home-maker/Teaching etc.]. I am simple by nature, emotionally mature, and respectful towards elders and family traditions.\n\nI belong to a caring and respected family that holds Islamic values close.\n\nI am looking for a partner who is religious, understanding, and has a stable and responsible nature.`;
+      } else {
+        about.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
